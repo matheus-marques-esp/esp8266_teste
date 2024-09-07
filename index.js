@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 
 const { mongoConnect } = require('./mongoClient');
 
-const indexRoutes = require('./routes/index');
+const indexRoutes = require('./routes.js');
 
 dotenv.config();
 
