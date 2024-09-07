@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
-const { mongoConnect } = require('./controllers/mongoClient');
+const { mongoConnect } = require('./mongoClient');
 
 const indexRoutes = require('./routes/index');
 
