@@ -12,6 +12,26 @@ router.get("/", async (req, res) => {
     return res.send("OK"); 
 });
 
+router.get("/on", async (req, res) => {
+    const PowerOutput = await getCollection('PowerOutput');
+
+    await PowerOutput.updateOne({ name: 'Output A' }, { $set: { state: true } });
+    await PowerOutput.updateOne({ name: 'Output B' }, { $set: { state: true } });
+    await PowerOutput.updateOne({ name: 'Output C' }, { $set: { state: true } });
+
+    return res.status(200).send(true);
+});
+
+router.get("/off", async (req, res) => {
+    const PowerOutput = await getCollection('PowerOutput');
+
+    await PowerOutput.updateOne({ name: 'Output A' }, { $set: { state: false } });
+    await PowerOutput.updateOne({ name: 'Output B' }, { $set: { state: false } });
+    await PowerOutput.updateOne({ name: 'Output C' }, { $set: { state: false } });
+
+    return res.status(200).send(false);
+});
+
 router.get("/out", async (req, res) => {
     const PowerOutput = await getCollection('PowerOutput');
 
