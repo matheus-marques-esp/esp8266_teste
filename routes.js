@@ -19,6 +19,8 @@ router.get("/on", async (req, res) => {
     await PowerOutput.updateOne({ name: 'Output B' }, { $set: { state: true } });
     await PowerOutput.updateOne({ name: 'Output C' }, { $set: { state: true } });
 
+    console.log('ON')
+
     return res.status(200).send(true);
 });
 
@@ -28,6 +30,8 @@ router.get("/off", async (req, res) => {
     await PowerOutput.updateOne({ name: 'Output A' }, { $set: { state: false } });
     await PowerOutput.updateOne({ name: 'Output B' }, { $set: { state: false } });
     await PowerOutput.updateOne({ name: 'Output C' }, { $set: { state: false } });
+
+    console.log('OFF')
 
     return res.status(200).send(false);
 });
@@ -40,7 +44,9 @@ router.get("/out", async (req, res) => {
     await PowerOutput.updateOne({ name: 'Output B' }, { $set: { state: !output_A.state } });
     await PowerOutput.updateOne({ name: 'Output C' }, { $set: { state: !output_A.state } });
 
-    if (!output_A || output_A.state === undefined) return res.status(200).send(false);    
+    if (!output_A || output_A.state === undefined) return res.status(200).send(false);   
+
+    console.log("OUT")
 
     return res.status(200).send(output_A.state);
 });
@@ -51,7 +57,9 @@ router.get("/out_a", async (req, res) => {
     var output_A = await PowerOutput.findOne({ name: 'Output A' });
     await PowerOutput.updateOne({ name: 'Output A' }, { $set: { state: !output_A.state } });
 
-    if (!output_A || output_A.state === undefined) return res.status(200).send(false);    
+    if (!output_A || output_A.state === undefined) return res.status(200).send(false);   
+    
+    console.log("A")
 
     return res.status(200).send(output_A.state);
 });
@@ -61,6 +69,8 @@ router.get("/out_b", async (req, res) => {
 
     var output_B = await PowerOutput.findOne({ name: 'Output B' });
     await PowerOutput.updateOne({ name: 'Output B' }, { $set: { state: !output_B.state } });
+
+    console.log("B")
 
     if (!output_B || output_B.state === undefined) return res.status(200).send(false);    
 
@@ -72,6 +82,8 @@ router.get("/out_c", async (req, res) => {
 
     var output_C = await PowerOutput.findOne({ name: 'Output C' });
     await PowerOutput.updateOne({ name: 'Output C' }, { $set: { state: !output_C.state } });
+
+    console.log("C")
 
     if (!output_C || !output_C.state) return res.status(200).send(false);    
 
